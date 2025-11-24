@@ -1,0 +1,29 @@
+{
+  "name": "SaaS Go App",
+  "description": "A SaaS web application built with Go, Gin, Vue.js, and Heroku Postgres",
+  "repository": "https://github.com/yourusername/saas-go-app",
+  "keywords": ["go", "gin", "vue", "postgres", "saas"],
+  "buildpacks": [
+    {
+      "url": "heroku/go"
+    }
+  ],
+  "env": {
+    "JWT_SECRET": {
+      "description": "Secret key for JWT token generation",
+      "required": true,
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    "heroku-postgresql",
+    "heroku-redis"
+  ]
+}
+
