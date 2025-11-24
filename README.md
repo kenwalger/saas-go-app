@@ -99,6 +99,18 @@ npm run dev
 
 The frontend will be available at `http://localhost:3000` and will proxy API requests to `http://localhost:8080`.
 
+**For Production/Heroku Deployment:**
+1. Build the frontend:
+```bash
+cd web/frontend
+npm install
+npm run build
+```
+
+2. The built files will be in `web/frontend/dist/`
+3. The Go server will automatically serve these files when deployed
+4. See [FRONTEND_DEPLOYMENT.md](FRONTEND_DEPLOYMENT.md) for detailed deployment options
+
 ## API Endpoints
 
 ### Authentication

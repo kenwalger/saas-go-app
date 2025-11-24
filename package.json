@@ -1,0 +1,13 @@
+{
+  "name": "saas-go-app",
+  "version": "1.0.0",
+  "description": "SaaS Go App - Full stack application with Go backend and Vue.js frontend",
+  "scripts": {
+    "heroku-postbuild": "cd web/frontend && npm install && npm run build"
+  },
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  }
+}
+

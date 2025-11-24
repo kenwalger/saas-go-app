@@ -5,6 +5,9 @@
   "keywords": ["go", "gin", "vue", "postgres", "saas"],
   "buildpacks": [
     {
+      "url": "heroku/nodejs"
+    },
+    {
       "url": "heroku/go"
     }
   ],

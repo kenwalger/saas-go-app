@@ -36,7 +36,9 @@ Thumbs.db
 
 # Frontend
 web/frontend/node_modules/
-web/frontend/dist/
+# Note: dist/ can be ignored if using multi-buildpack (Option 2 in FRONTEND_DEPLOYMENT.md)
+# If building locally and committing dist/, keep it uncommented below:
+# web/frontend/dist/
 web/frontend/.vite/
 
 # Logs
@@ -47,3 +49,4 @@ QUICKSTART.md
 REQUIREMENTS.md
 REPOSITORY_NAMES.md
 commit-message.txt
+FRONTEND_DEPLOYMENT.md

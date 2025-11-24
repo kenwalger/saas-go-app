@@ -45,5 +45,8 @@ frontend-dev:
 
 # Build frontend
 frontend-build:
-	cd web/frontend && npm run build
+	cd web/frontend && npm install && npm run build
+
+# Build everything (backend + frontend)
+build-all: frontend-build build
 

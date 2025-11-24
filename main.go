@@ -71,24 +71,47 @@ func main() {
 	// Set up Gin router
 	router := gin.Default()
 
-	// Root endpoint
-	router.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "SaaS Go App API",
-			"version": "1.0.0",
-			"endpoints": gin.H{
-				"health": "/health",
-				"metrics": "/metrics",
-				"auth": gin.H{
-					"login": "POST /api/auth/login",
-					"register": "POST /api/auth/register",
-				},
-				"customers": "GET, POST, PUT, DELETE /api/customers",
-				"accounts": "GET, POST, PUT, DELETE /api/accounts",
-				"analytics": "GET /api/analytics",
-			},
+	// Serve static files from frontend build (if it exists)
+	// In production, the frontend should be built and placed in web/frontend/dist
+	if _, err := os.Stat("web/frontend/dist"); err == nil {
+		// Serve static files
+		router.Static("/static", "web/frontend/dist/assets")
+		router.StaticFile("/favicon.ico", "web/frontend/dist/favicon.ico")
+		
+		// Serve index.html for all non-API routes (SPA routing)
+		router.NoRoute(func(c *gin.Context) {
+			path := c.Request.URL.Path
+			// Don't serve frontend for API routes, health, or metrics
+			if len(path) >= 4 && path[:4] == "/api" {
+				c.JSON(http.StatusNotFound, gin.H{"error": "Not found"})
+			} else if path == "/health" || path == "/metrics" {
+				c.JSON(http.StatusNotFound, gin.H{"error": "Not found"})
+			} else {
+				// Serve the SPA index.html for all other routes
+				c.File("web/frontend/dist/index.html")
+			}
 		})
-	})
+	} else {
+		// If frontend is not built, show API info at root
+		router.GET("/", func(c *gin.Context) {
+			c.JSON(http.StatusOK, gin.H{
+				"message": "SaaS Go App API",
+				"version": "1.0.0",
+				"note": "Frontend not built. Run 'cd web/frontend && npm install && npm run build' to build the frontend.",
+				"endpoints": gin.H{
+					"health": "/health",
+					"metrics": "/metrics",
+					"auth": gin.H{
+						"login": "POST /api/auth/login",
+						"register": "POST /api/auth/register",
+					},
+					"customers": "GET, POST, PUT, DELETE /api/customers",
+					"accounts": "GET, POST, PUT, DELETE /api/accounts",
+					"analytics": "GET /api/analytics",
+				},
+			})
+		})
+	}
 
 	// Prometheus metrics endpoint
 	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
