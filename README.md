@@ -67,6 +67,7 @@ ANALYTICS_DB_URL=postgres://user:password@localhost:5432/saas_go_app?sslmode=dis
 REDIS_URL=redis://localhost:6379/0
 JWT_SECRET=your-secret-key-change-in-production
 PORT=8080
+SEED_DATA=true  # Set to "true" to populate database with sample data on startup
 ```
 
 **Note**: On Heroku, `DATABASE_URL`, `ANALYTICS_DB_URL`, `REDIS_URL`, and `PORT` are automatically set by Heroku addons. You only need to set `JWT_SECRET` manually.

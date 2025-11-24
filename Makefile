@@ -31,6 +31,15 @@ deps:
 migrate:
 	go run ./cmd/server -migrate || echo "Note: Migration is handled automatically on startup"
 
+# Seed database with sample data (runs server with SEED_DATA=true)
+seed:
+	SEED_DATA=true go run ./main.go
+
+# Seed database without running server (one-time seed)
+seed-once:
+	@echo "Note: This will seed the database if it's empty"
+	@SEED_DATA=true timeout 5 go run ./main.go || true
+
 # Format code
 fmt:
 	go fmt ./...
