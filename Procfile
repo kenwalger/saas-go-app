@@ -1,1 +1,1 @@
-web: bin/saas-go-app
+web: saas-go-app
