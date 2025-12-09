@@ -2,6 +2,21 @@
 
 This document provides a comprehensive overview of the SaaS Go App architecture, with a focus on the leader/follower database pattern implementation.
 
+## What This Application Does (Plain Language)
+
+**The SaaS Go App** is a demonstration web application that showcases how to build a modern, scalable SaaS (Software as a Service) application using best practices. Think of it as a simple customer management system where you can:
+
+- **Manage Customers**: Create, view, update, and delete customer records
+- **Manage Accounts**: Each customer can have multiple accounts (like subscription tiers or service plans)
+- **View Analytics**: See dashboard statistics like total customers, active accounts, and averages
+- **Secure Access**: Users must log in with a username and password to access the system
+
+**The Real Value**: This application demonstrates how to leverage **Heroku Postgres Advanced (Next Generation)** to automatically handle database scaling and performance optimization without complex application code. Instead of managing separate database connections for different types of queries, you use a single connection and let the database intelligently route:
+- **Write operations** (creating/updating data) → Leader database
+- **Read operations** (viewing data, analytics) → Follower pool (read replicas)
+
+This means your application stays simple while the database handles the complexity of scaling and performance optimization automatically.
+
 ## Table of Contents
 
 1. [System Overview](#system-overview)
