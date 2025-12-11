@@ -154,7 +154,7 @@ db.Query("SELECT ...") // Database routes to follower
 
 ## Resources to Share
 
-- **Application**: [GitHub Repository] or [Live Demo URL]
+- **Application**: [GitHub Repository](https://github.com/heroku-examples/saas-go-app) or [Live Demo URL](https://saas-go-app-d7a6a4d068d6.herokuapp.com/dashboard)
 - **Architecture Docs**: `ARCHITECTURE.md` - Comprehensive diagrams and explanations
 - **Setup Guide**: `NGPG_SETUP.md` - How to configure NGPG
 - **Heroku Blog**: [Next Gen Postgres Announcement](https://www.heroku.com/blog/introducing-the-next-generation-of-heroku-postgres/)
@@ -179,8 +179,9 @@ A: Heroku Postgres Advanced is available through the pilot program. Contact Hero
 
 ## Visual Aids
 
-1. **Architecture Diagram**: Show the single-connection NGPG diagram from `ARCHITECTURE.md`
+1. **Architecture Diagram**: Show the single-connection NGPG diagram from [`ARCHITECTURE.md`](ARCHITECTURE.md)
 2. **Before/After Code**: Show traditional vs NGPG code comparison
 3. **Performance Metrics**: Highlight the 4X improvement
-4. **Live Demo**: Show the application running with analytics dashboard
+4. **Live Demo**: Show [the application](https://saas-go-app-d7a6a4d068d6.herokuapp.com/dashboard) running with analytics dashboard
+
 
