@@ -41,8 +41,15 @@ func main() {
 
 	// Seed database with sample data if SEED_DATA is set
 	if os.Getenv("SEED_DATA") == "true" {
-		if err := db.SeedDataIfEmpty(); err != nil {
-			log.Printf("Warning: Failed to seed database: %v", err)
+		// Check if we should force reseed (clears existing data first)
+		if os.Getenv("FORCE_RESEED") == "true" {
+			if err := db.ClearAndReseed(); err != nil {
+				log.Printf("Warning: Failed to clear and reseed database: %v", err)
+			}
+		} else {
+			if err := db.SeedDataIfEmpty(); err != nil {
+				log.Printf("Warning: Failed to seed database: %v", err)
+			}
 		}
 	}
 
