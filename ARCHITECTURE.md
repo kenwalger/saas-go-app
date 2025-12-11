@@ -61,7 +61,7 @@ graph TB
     
     subgraph "Data Layer"
         NGPG[(Heroku Postgres Advanced<br/>Next Generation<br/>Automatic Routing)]
-        Redis[(Key Value<br/>Job Queue)]
+        Redis[(Redis<br/>Job Queue)]
     end
     
     subgraph "NGPG Internal"
@@ -73,7 +73,7 @@ graph TB
     API_Client --> Backend
     Frontend --> Backend
     Backend -->|Single Connection| NGPG
-    Backend --> Key Value
+    Backend --> Redis
     
     NGPG -.->|Auto Routes Writes| Leader
     NGPG -.->|Auto Routes Reads| Follower
