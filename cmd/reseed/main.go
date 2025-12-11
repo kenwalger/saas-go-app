@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"os"
 
 	"saas-go-app/internal/auth"
 	"saas-go-app/internal/db"
